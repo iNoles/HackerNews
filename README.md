@@ -6,5 +6,4 @@ This app demonstrates how to use IAsyncEnumerable + C# 8.0 to improve performanc
 
 This app also uses the Firebase Realtime Database REST API.
 
-
-<img width="1136" alt="desktop" src="https://github.com/iNoles/HackerNews/assets/49764/b6cfa606-62a2-4c1b-947b-dbe4d249c26e">
+<img width="1136" alt="desktop" src="https://github.com/iNoles/HackerNews/assets/49764/9f4ebdcb-014b-4979-a244-f81c6903f89b">
