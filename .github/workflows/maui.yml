@@ -30,7 +30,7 @@ jobs:
 
       - name: Build Android App
         run: |
-          dotnet build -f net7.0-android
+          dotnet build HackerNews.App.sln -f net7.0-android
 
   Build_iOS:
     runs-on: macos-13
@@ -58,7 +58,7 @@ jobs:
 
       - name: Build iOS App
         run: |
-          dotnet build -f net7.0-ios
+          dotnet build HackerNews.App.sln -f net7.0-ios
           
   Build_MacCatalyst:
     runs-on: macos-13
@@ -86,7 +86,7 @@ jobs:
 
       - name: Build macOS App
         run: |
-          dotnet build -f net7.0-maccatalyst
+          dotnet build HackerNews.App.sln -f net7.0-maccatalyst
 
   Build_Windows:
     runs-on: windows-latest
@@ -114,4 +114,4 @@ jobs:
 
       - name: Build Windows App
         run: |
-          dotnet build
+          dotnet build HackerNews.App.sln
