@@ -4,7 +4,7 @@
              xmlns:hackerNews="clr-namespace:HackerNews"
              x:Class="HackerNews.MainPage"
              x:DataType="hackerNews:NewsViewModel">
-   <ListView x:Name="NewsListView">
+   <ListView x:Name="NewsListView" ItemSelected="NewsListView_OnItemSelected">
        <ListView.ItemTemplate>
            <DataTemplate>
                <TextCell x:DataType="hackerNews:StoryModel"
