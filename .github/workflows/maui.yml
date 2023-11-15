@@ -10,7 +10,7 @@ on:
 
 jobs:
   Build_Android:
-    runs-on: windows-latest
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -29,7 +29,7 @@ jobs:
           dotnet build HackerNews.App.sln -f net8.0-android
 
   Build_iOS:
-    runs-on: macos-13
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -53,7 +53,7 @@ jobs:
           dotnet build HackerNews.App.sln -f net8.0-ios
           
   Build_MacCatalyst:
-    runs-on: macos-13
+    runs-on: macos-latest
 
     steps:
       - uses: actions/checkout@v4
@@ -75,27 +75,3 @@ jobs:
       - name: Build macOS App
         run: |
           dotnet build HackerNews.App.sln -f net8.0-maccatalyst
-
-  Build_Windows:
-    runs-on: windows-latest
-
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: actions/setup-java@v3
-        with:
-          distribution: 'microsoft'
-          java-version: '11'
-
-      - name: Setup .NET v8.0
-        uses: actions/setup-dotnet@v3
-        with:
-          dotnet-version: "8.0.x"
-
-      - name: Install .NET MAUI Workload
-        run: |
-          dotnet workload install maui
-
-      - name: Build Windows App
-        run: |
-          dotnet build HackerNews.App.sln
