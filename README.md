@@ -19,8 +19,8 @@ This app also uses the Firebase Realtime Database REST API.
 ### Clone the Repository
 
 ```bash
-git clone https://github.com/iNoles/TipCalculator.git
-cd TipCalculator
+git clone https://github.com/iNoles/HackerNews.git
+cd HackerNews
 ```
 
 ### Run and Build
