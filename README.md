@@ -13,7 +13,7 @@ This app also uses the Firebase Realtime Database REST API.
 ## Getting Started
 
 ### Prerequisites
-
+- Install the latest version for .NET 8
 - Install [.NET MAUI workload](https://docs.microsoft.com/en-us/dotnet/maui/get-started/installation) on your development machine.
 
 ### Clone the Repository
