@@ -94,8 +94,4 @@ jobs:
 
       - name: Build Windows App
         run: |
-          dotnet build HackerNews.App.sln
-
-      - name: Build macOS App
-        run: |
-          dotnet build HackerNews.App.sln -f net8.0-maccatalyst
+          dotnet build HackerNews.App.sln -f net8.0-windows10.0.19041.0
