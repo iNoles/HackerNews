@@ -6,7 +6,7 @@ namespace HackerNews;
 
 public class NewsViewModel: ObservableObject
 {
-    public ObservableCollection<StoryModel> TopStoryCollection { get; } = new();
+    public ObservableCollection<StoryModel> TopStoryCollection { get; } = [];
     
     private readonly NewsService _newsService = new();
 
