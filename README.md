@@ -1,6 +1,6 @@
 # Hacker News App
 
-Welcome to the Hacker News App! This application fetches and displays the top stories from the Hacker News API, allowing users to stay updated with the latest tech news.
+This application fetches and displays the top stories from the Hacker News API, allowing users to stay updated with the latest tech news.
 
 ## Features
 
