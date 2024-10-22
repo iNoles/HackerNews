@@ -1,12 +1,30 @@
-﻿namespace HackerNews;
+﻿using Microsoft.Extensions.Logging;
+
+namespace HackerNews;
 
 public partial class MainPage
 {
-    private readonly NewsViewModel _newsViewModel = new();
+    private readonly NewsViewModel _newsViewModel;
     
     public MainPage()
     {
         InitializeComponent();
+
+        // Set up the logger
+        var loggerFactory = LoggerFactory.Create(builder =>
+        {
+            builder.AddConsole(); // Add other logging providers as necessary
+        });
+
+        var logger = loggerFactory.CreateLogger<NewsViewModel>();
+
+        // Create an instance of NewsService, passing the loggerFactory if needed
+        var newsService = new NewsService(loggerFactory);
+
+        // Create the NewsViewModel instance
+        _newsViewModel = new NewsViewModel(newsService, logger);
+
+        // Set the ItemsSource for the NewsListView
         NewsListView.ItemsSource = _newsViewModel.TopStoryCollection;
     }
 

@@ -4,11 +4,12 @@ using Microsoft.Extensions.Logging;
 
 namespace HackerNews;
 
-public class NewsService(ILogger<NewsService> logger)
+public class NewsService(ILoggerFactory loggerFactory)
 {
     private const string FirebaseDatabaseUrl = "https://hacker-news.firebaseio.com/v0/";
     private readonly FirebaseClient _firebaseClient = new(FirebaseDatabaseUrl);
-    private readonly ILogger<NewsService> _logger = logger;
+
+    private readonly ILogger<NewsService> _logger = loggerFactory.CreateLogger<NewsService>();
 
     public async Task<string> GetTopStoryAsJson()
     {
