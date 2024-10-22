@@ -1,26 +1,38 @@
 using System.Collections.ObjectModel;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace HackerNews;
 
-public class NewsViewModel: ObservableObject
+public class NewsViewModel(NewsService newsService, ILogger<NewsViewModel> logger) : ObservableObject
 {
-    public ObservableCollection<StoryModel> TopStoryCollection { get; } = [];
-    
-    private readonly NewsService _newsService = new();
+    public ObservableCollection<StoryModel> TopStoryCollection { get; } = new ObservableCollection<StoryModel>();
+
+    private readonly NewsService _newsService = newsService;
+    private readonly ILogger<NewsViewModel> _logger = logger;
 
     public async Task Refresh()
     {
-        TopStoryCollection.Clear();
-
-        await foreach (var story in GetTopStories().ConfigureAwait(false))
+        // Ensure this method is called on the UI thread
+        await MainThread.InvokeOnMainThreadAsync(async () =>
         {
-            InsertIntoSortedCollection(TopStoryCollection, (a, b) => b.Score.CompareTo(a.Score), story);
-            //Console.WriteLine(story.Title);
-        }
+            try
+            {
+                TopStoryCollection.Clear();
+
+                await foreach (var story in GetTopStories().ConfigureAwait(false))
+                {
+                    InsertIntoSortedCollection(TopStoryCollection, (a, b) => b.Score.CompareTo(a.Score), story);
+                }
+            }
+            catch (Exception ex)
+            {
+                _logger.LogError(ex, "Error while refreshing top stories.");
+            }
+        });
     }
-    
+
     static void InsertIntoSortedCollection<T>(ObservableCollection<T> collection, Comparison<T> comparison, T modelToInsert)
     {
         if (collection.Count is 0)
@@ -47,12 +59,28 @@ public class NewsViewModel: ObservableObject
 
     async IAsyncEnumerable<StoryModel> GetTopStories()
     {
-        var topStories = await _newsService.GetTopStoryAsJson();
-        var topStoryJson = JsonConvert.DeserializeObject<List<string>>(topStories);
-        var getTopStoryTaskList = topStoryJson.Select(x => x.ToString()).ToList();
-        foreach (var topStoryId in getTopStoryTaskList)
+        var stories = new List<StoryModel>();
+
+        try
         {
-            var story = await _newsService.GetTopStory(topStoryId);
+            var topStories = await _newsService.GetTopStoryAsJson();
+            var topStoryJson = JsonConvert.DeserializeObject<List<string>>(topStories);
+
+            foreach (var topStoryId in topStoryJson)
+            {
+                var story = await _newsService.GetTopStory(topStoryId);
+                stories.Add(story);  // Add to the temporary list
+            }
+        }
+        catch (Exception ex)
+        {
+            _logger.LogError(ex, "Error while fetching top stories.");
+            throw;
+        }
+
+        // Yield the results after the try-catch block
+        foreach (var story in stories)
+        {
             yield return story;
         }
     }
