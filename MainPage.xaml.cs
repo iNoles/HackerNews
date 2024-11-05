@@ -1,53 +1,42 @@
-﻿using Microsoft.Extensions.Logging;
+﻿namespace HackerNews;
 
-namespace HackerNews;
-
-public partial class MainPage
+public partial class MainPage : ContentPage
 {
     private readonly NewsViewModel _newsViewModel;
-    
-    public MainPage()
+
+    // Constructor accepting NewsViewModel via Dependency Injection
+    public MainPage(NewsViewModel newsViewModel)
     {
         InitializeComponent();
+        _newsViewModel = newsViewModel;
 
-        // Set up the logger
-        var loggerFactory = LoggerFactory.Create(builder =>
-        {
-            builder.AddConsole(); // Add other logging providers as necessary
-        });
-
-        var logger = loggerFactory.CreateLogger<NewsViewModel>();
-
-        // Create an instance of NewsService, passing the loggerFactory if needed
-        var newsService = new NewsService(loggerFactory);
-
-        // Create the NewsViewModel instance
-        _newsViewModel = new NewsViewModel(newsService, logger);
-
-        // Set the ItemsSource for the NewsListView
-        NewsListView.ItemsSource = _newsViewModel.TopStoryCollection;
+        // Set the BindingContext for data binding in XAML
+        BindingContext = _newsViewModel;
     }
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        await _newsViewModel.Refresh();
+        await _newsViewModel.RefreshAsync();
     }
 
-    private async void NewsListView_OnItemSelected(object sender, SelectedItemChangedEventArgs e)
+    private async void NewsCollectionView_OnSelectionChanged(object sender, SelectionChangedEventArgs e)
     {
-        var listView = (ListView)sender;
-        listView.SelectedItem = null;
-
-        if (e.SelectedItem is not StoryModel storyModel) return;
-        if (!string.IsNullOrEmpty(storyModel.Url))
+        // Check if there is a selected item and access it directly by index
+        if (e.CurrentSelection.Count > 0 && e.CurrentSelection[0] is StoryModel storyModel)
         {
-            var browserOptions = new BrowserLaunchOptions();
-            await Browser.Default.OpenAsync(storyModel.Url, browserOptions);
-        }
-        else
-        {
-            await DisplayAlert("Invalid Article", "ASK HN articles have no url", "OK");
+            // Clear selection
+            ((CollectionView)sender).SelectedItem = null;
+            
+            if (!string.IsNullOrEmpty(storyModel.Url))
+            {
+                var browserOptions = new BrowserLaunchOptions { LaunchMode = BrowserLaunchMode.SystemPreferred };
+                await Browser.Default.OpenAsync(storyModel.Url, browserOptions);
+            }
+            else
+            {
+                await DisplayAlert("Invalid Article", "ASK HN articles have no URL", "OK");
+            }
         }
     }
 }

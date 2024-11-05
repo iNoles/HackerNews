@@ -11,22 +11,22 @@ public class NewsService(ILoggerFactory loggerFactory)
 
     private readonly ILogger<NewsService> _logger = loggerFactory.CreateLogger<NewsService>();
 
-    public async Task<string> GetTopStoryAsJson()
+    public async Task<string> GetTopStoryAsJsonAsync()
     {
         try
-        {
+         {
             return await _firebaseClient
                 .Child("topstories.json?print=pretty")
                 .OnceAsJsonAsync();
         }
         catch (Exception ex)
         {
-            _logger.LogError(ex, "Error fetching top stories from Firebase");
-            throw;
+            _logger.LogError(ex, "Error fetching top stories from Firebase.");
+             throw;
         }
     }
 
-    public async Task<StoryModel> GetTopStory(string topStoryId)
+    public async Task<StoryModel> GetTopStoryAsync(string topStoryId)
     {
         try
         {

@@ -4,13 +4,25 @@
              xmlns:hackerNews="clr-namespace:HackerNews"
              x:Class="HackerNews.MainPage"
              x:DataType="hackerNews:NewsViewModel">
-   <ListView x:Name="NewsListView" ItemSelected="NewsListView_OnItemSelected">
-       <ListView.ItemTemplate>
-           <DataTemplate>
-               <TextCell x:DataType="hackerNews:StoryModel"
-                   Text="{Binding Title}"
-                   Detail="{Binding CreatedAt}" />
+
+   <CollectionView x:Name="NewsCollectionView" 
+                   ItemsSource="{Binding TopStoryCollection}" 
+                   SelectionMode="Single" 
+                   SelectionChanged="NewsCollectionView_OnSelectionChanged">
+       <CollectionView.ItemTemplate>
+           <DataTemplate x:DataType="hackerNews:StoryModel">
+               <Frame Padding="10" Margin="5" BorderColor="LightGray">
+                   <StackLayout>
+                       <Label Text="{Binding Title}" 
+                              FontSize="18" 
+                              FontAttributes="Bold" />
+                       <Label Text="{Binding CreatedAt, StringFormat='{0:MMM dd, yyyy h:mm tt}'}" 
+                              FontSize="14" 
+                              TextColor="Gray" />
+                   </StackLayout>
+               </Frame>
            </DataTemplate>
-       </ListView.ItemTemplate>
-   </ListView>
+       </CollectionView.ItemTemplate>
+   </CollectionView>
+
 </ContentPage>
