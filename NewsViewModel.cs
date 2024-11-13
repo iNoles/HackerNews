@@ -59,8 +59,7 @@ public class NewsViewModel(NewsService newsService, ILogger<NewsViewModel> logge
 
     private async IAsyncEnumerable<StoryModel> GetTopStoriesAsync()
     {
-        List<string> topStoryIds = [];
-        
+        List<string> topStoryIds;
         try
         {
             var topStoriesJson = await _newsService.GetTopStoryAsJsonAsync();
@@ -74,8 +73,7 @@ public class NewsViewModel(NewsService newsService, ILogger<NewsViewModel> logge
         
         foreach (var id in topStoryIds)
         {
-            StoryModel story = null;
-            
+            StoryModel story;
             try
             {
                 story = await _newsService.GetTopStoryAsync(id);
