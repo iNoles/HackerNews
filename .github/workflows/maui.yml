@@ -71,7 +71,11 @@ jobs:
         uses: maxim-lobanov/setup-xcode@v1
         with:
           xcode-version: latest-stable
-
+      
+      - name: Build MacOS App
+        run: |
+         dotnet build HackerNews.App.sln -f net9.0-maccatalyst
+  
   Build_Windows:
     runs-on: windows-latest
 
