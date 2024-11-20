@@ -4,19 +4,21 @@ This application fetches and displays the top stories from the Hacker News API, 
 
 ## Features
 
-- Fetches the latest top stories from Hacker News (up to 500 stories).
-- Displays story titles, authors, and scores.
-- Sorts stories by score in descending order.
-- Easy to use and visually appealing interface.
+- Fetches the latest top stories from Hacker News (up to 500 stories)
+- Displays story titles, authors, and scores
+- Sorts stories by score in descending order using **LINQ**
+- Easy to use and visually appealing interface
+- Error handling for network and data issues
 
 ## Technologies Used
 
-- [.NET MAUI](https://dotnet.microsoft.com/apps/maui) for cross-platform app development.
-- [Firebase](https://firebase.google.com/) for real-time data storage and retrieval.
-- [CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/overview) for MVVM architecture.
-- [Newtonsoft.Json](https://www.newtonsoft.com/json) for JSON serialization and deserialization.
-- [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging) for logging errors and important information.
-- **IAsyncEnumerable** for improved performance when fetching top stories from the Hacker News API.
+- [.NET MAUI](https://dotnet.microsoft.com/apps/maui) for cross-platform app development
+- [Firebase](https://firebase.google.com/) for real-time data storage and retrieval
+- [CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/overview) for MVVM architecture
+- [Newtonsoft.Json](https://www.newtonsoft.com/json) for JSON serialization and deserialization
+- [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging) for logging errors and important information
+- [System.Linq.Async](https://github.com/dotnet/reactive) for asynchronous LINQ operations on `IAsyncEnumerable`
+- **IAsyncEnumerable** for improved performance when fetching top stories from the Hacker News API
 
 ## Installation
 
