@@ -17,24 +17,24 @@ public class NewsViewModel(NewsService newsService, ILogger<NewsViewModel> logge
         // Ensure this method is called on the UI thread
         await MainThread.InvokeOnMainThreadAsync(async () =>
         {
-           try
-           {
-               TopStoryCollection.Clear();
+            try
+            {
+                TopStoryCollection.Clear();
 
-               var sortedStories = (await GetTopStoriesAsync().ToListAsync())
-                   .OrderByDescending(story => story.Score)
-                   .ToList();
+                var sortedStories = (await GetTopStoriesAsync().ToListAsync())
+                    .OrderByDescending(story => story.Score)
+                    .ToList();
 
-               foreach (var story in sortedStories)
-               {
-                   TopStoryCollection.Add(story); // Add sorted stories to the collection
-               }
-           }
-           catch (Exception ex)
-           {
+                foreach (var story in sortedStories)
+                {
+                    TopStoryCollection.Add(story); // Add sorted stories to the collection
+                }
+            }
+            catch (Exception ex)
+            {
                 _logger.LogError(ex, "Error while refreshing top stories.");
-           }
-       });
+            }
+        });
     }
 
     static void InsertIntoSortedCollection<T>(ObservableCollection<T> collection, Comparison<T> comparison, T modelToInsert)
@@ -74,7 +74,7 @@ public class NewsViewModel(NewsService newsService, ILogger<NewsViewModel> logge
             _logger.LogError(ex, "Error while fetching top stories.");
             yield break; // Stop if there’s an issue fetching the top story IDs
         }
-        
+
         foreach (var id in topStoryIds)
         {
             StoryModel story;
