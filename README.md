@@ -4,6 +4,7 @@
 ![C#](https://img.shields.io/badge/C%23-239120?style=flat&logo=c-sharp&logoColor=white)
 ![MVVM](https://img.shields.io/badge/MVVM-CommunityToolkit-blue)
 ![Hacker News API](https://img.shields.io/badge/API-Hacker_News-orange)
+[![.NET MAUI](https://github.com/iNoles/HackerNews/actions/workflows/maui.yml/badge.svg)](https://github.com/iNoles/HackerNews/actions/workflows/maui.yml)
 
 This application fetches and displays the top stories from the Hacker News API, allowing users to stay updated with the latest tech news.
 
