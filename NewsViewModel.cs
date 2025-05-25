@@ -1,7 +1,7 @@
 using System.Collections.ObjectModel;
+using System.Text.Json;
 using CommunityToolkit.Mvvm.ComponentModel;
 using Microsoft.Extensions.Logging;
-using Newtonsoft.Json;
 
 namespace HackerNews;
 
@@ -43,7 +43,7 @@ public class NewsViewModel(NewsService newsService, ILogger<NewsViewModel> logge
         try
         {
             var topStoriesJson = await _newsService.GetTopStoryAsJsonAsync();
-            topStoryIds = JsonConvert.DeserializeObject<List<string>>(topStoriesJson);
+            topStoryIds = JsonSerializer.Deserialize<List<string>>(topStoriesJson);
         }
         catch (Exception ex)
         {

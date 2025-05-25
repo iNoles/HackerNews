@@ -21,7 +21,7 @@ This application fetches and displays the top stories from the Hacker News API, 
 - [.NET MAUI](https://dotnet.microsoft.com/apps/maui) for cross-platform app development
 - [Firebase](https://firebase.google.com/) for real-time data storage and retrieval
 - [CommunityToolkit.Mvvm](https://learn.microsoft.com/en-us/dotnet/communitytoolkit/mvvm/overview) for MVVM architecture
-- [Newtonsoft.Json](https://www.newtonsoft.com/json) for JSON serialization and deserialization
+- [System.Text.Json](https://learn.microsoft.com/en-us/dotnet/api/system.text.json) for JSON serialization and deserialization
 - [Microsoft.Extensions.Logging](https://learn.microsoft.com/en-us/dotnet/core/extensions/logging) for logging errors and important information
 - [System.Linq.Async](https://github.com/dotnet/reactive) for asynchronous LINQ operations on `IAsyncEnumerable`
 - **IAsyncEnumerable** for improved performance when fetching top stories from the Hacker News API
@@ -60,7 +60,7 @@ To get started with the Hacker News App, follow these steps:
 
 ## Contributing
 
-Contributions are what make the open-source community such an amazing place to be, learn, inspire, and create. Any contributions you make are greatly appreciated.
+Contributions make the open-source community an amazing place to be, learn, inspire, and create. Any contributions you make are greatly appreciated.
 
 - Fork the project.
 - Create your feature branch (e.g., ``git checkout -b feature/AmazingFeature``).
