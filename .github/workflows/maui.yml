@@ -26,7 +26,7 @@ jobs:
 
       - name: Build Android App
         run: |
-          dotnet build HackerNews.App.sln -f net9.0-android
+          dotnet build HackerNews.Maui -f net9.0-android
 
   Build_iOS:
     runs-on: macos-latest
@@ -50,7 +50,7 @@ jobs:
 
       - name: Build iOS App
         run: |
-          dotnet build HackerNews.App.sln -f net9.0-ios
+          dotnet build HackerNews.Maui -f net9.0-ios
           
   Build_MacCatalyst:
     runs-on: macos-latest
@@ -74,7 +74,7 @@ jobs:
       
       - name: Build MacOS App
         run: |
-         dotnet build HackerNews.App.sln -f net9.0-maccatalyst
+         dotnet build HackerNews.Maui -f net9.0-maccatalyst
   
   Build_Windows:
     runs-on: windows-latest
@@ -98,4 +98,4 @@ jobs:
 
       - name: Build Windows App
         run: |
-          dotnet build HackerNews.App.sln -f net9.0-windows10.0.19041.0
+          dotnet build HackerNews.Maui -f net9.0-windows10.0.19041.0
