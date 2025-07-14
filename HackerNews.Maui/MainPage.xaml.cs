@@ -1,6 +1,6 @@
 ﻿using HackerNews.Core;
 
-namespace HackerNews;
+namespace HackerNews.Maui;
 
 public partial class MainPage : ContentPage
 {
