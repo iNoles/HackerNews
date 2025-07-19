@@ -10,10 +10,10 @@ jobs:
   define-macos-version:
     runs-on: ubuntu-latest
     outputs:
-      macos-version: macos-15  # change here in one place later
+      macos-version: macos-15
     steps:
       - run: echo "Defined macOS version"
-  
+
   Build_Android:
     needs: define-macos-version
     runs-on: ${{ needs.define-macos-version.outputs.macos-version }}
@@ -99,3 +99,24 @@ jobs:
 
       - name: Build Windows App
         run: dotnet build HackerNews.Maui -f net9.0-windows10.0.19041.0
+
+  Run_Tests:
+    needs:
+      - Build_Android
+      - Build_iOS
+      - Build_MacCatalyst
+      - Build_Windows
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup .NET v9
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: "9"
+
+      - name: Restore and Run Tests
+        run: |
+          dotnet restore
+          dotnet test HackerNews.Tests
