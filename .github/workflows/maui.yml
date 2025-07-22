@@ -116,6 +116,9 @@ jobs:
         with:
           dotnet-version: "9"
 
+      - name: Install .NET MAUI Workload
+        run: dotnet workload install maui
+
       - name: Restore and Run Tests
         run: |
           dotnet restore
