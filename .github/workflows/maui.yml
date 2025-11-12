@@ -42,7 +42,7 @@ jobs:
       - name: Setup .NET v10
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: ”10”
+          dotnet-version: ”10"
 
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
@@ -60,7 +60,7 @@ jobs:
       - name: Setup .NET v10
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "10”
+          dotnet-version: "10"
 
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
@@ -82,7 +82,7 @@ jobs:
       - name: Setup .NET v10
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "10”
+          dotnet-version: "10"
 
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
