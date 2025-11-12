@@ -21,16 +21,16 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Setup .NET v9
+      - name: Setup .NET v10
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "9"
+          dotnet-version: "10"
 
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
 
       - name: Build Android App
-        run: dotnet build HackerNews.Maui -f net9.0-android
+        run: dotnet build HackerNews.Maui -f net10.0-android
 
   Build_iOS:
     needs: define-macos-version
@@ -48,7 +48,7 @@ jobs:
         run: dotnet workload install maui
 
       - name: Build iOS App
-        run: dotnet build HackerNews.Maui -f net9.0-ios
+        run: dotnet build HackerNews.Maui -f net10.0-ios
 
   Build_MacCatalyst:
     needs: define-macos-version
@@ -66,7 +66,7 @@ jobs:
         run: dotnet workload install maui
 
       - name: Build Mac App
-        run: dotnet build HackerNews.Maui -f net9.0-maccatalyst
+        run: dotnet build HackerNews.Maui -f net10.0-maccatalyst
 
   Build_Windows:
     runs-on: windows-latest
@@ -88,7 +88,7 @@ jobs:
         run: dotnet workload install maui
 
       - name: Build Windows App
-        run: dotnet build HackerNews.Maui -f net9.0-windows10.0.19041.0
+        run: dotnet build HackerNews.Maui -f net10.0-windows10.0.19041.0
 
   Run_Tests:
     needs:
@@ -101,10 +101,10 @@ jobs:
     steps:
       - uses: actions/checkout@v5
 
-      - name: Setup .NET v9
+      - name: Setup .NET v10
         uses: actions/setup-dotnet@v5
         with:
-          dotnet-version: "9"
+          dotnet-version: "10"
 
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
