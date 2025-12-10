@@ -52,8 +52,6 @@ jobs:
 
       - name: Build iOS App
         run: dotnet build HackerNews.Maui -f net10.0-ios
-        env:
-          MD_APPLE_SDK_ROOT: /Applications/Xcode_26.1.app
 
   Build_MacCatalyst:
     needs: define-macos-version
@@ -75,8 +73,6 @@ jobs:
 
       - name: Build Mac App
         run: dotnet build HackerNews.Maui -f net10.0-maccatalyst
-        env:
-          MD_APPLE_SDK_ROOT: /Applications/Xcode_26.1.app
 
   Build_Windows:
     runs-on: windows-latest
