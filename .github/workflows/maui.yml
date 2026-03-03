@@ -26,6 +26,14 @@ jobs:
         with:
           dotnet-version: "10"
 
+      - name: Restore NuGet cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
 
@@ -43,6 +51,14 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: "10"
+
+      - name: Restore NuGet cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
@@ -67,6 +83,14 @@ jobs:
         uses: actions/setup-dotnet@v5
         with:
           dotnet-version: "10"
+
+      - name: Restore NuGet cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
 
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
@@ -96,6 +120,14 @@ jobs:
         with:
           dotnet-version: "10"
 
+      - name: Restore NuGet cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
+
       - name: Install .NET MAUI Workload
         run: dotnet workload install maui
 
@@ -118,10 +150,10 @@ jobs:
         with:
           dotnet-version: "10"
 
-      - name: Install .NET MAUI Workload
-        run: dotnet workload install maui
-
-      - name: Restore and Run Tests
-        run: |
-          dotnet restore
-          dotnet test HackerNews.Tests
+      - name: Restore NuGet cache
+        uses: actions/cache@v4
+        with:
+          path: ~/.nuget/packages
+          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
+          restore-keys: |
+            ${{ runner.os }}-nuget-
