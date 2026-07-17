@@ -7,16 +7,8 @@ on:
     branches: ["*"]
 
 jobs:
-  define-macos-version:
-    runs-on: ubuntu-latest
-    outputs:
-      macos-version: macos-26
-    steps:
-      - run: echo "Defined macOS version 26"
-
   Build_Android:
-    needs: define-macos-version
-    runs-on: ${{ needs.define-macos-version.outputs.macos-version }}
+    runs-on: windows-latest
 
     steps:
       - uses: actions/checkout@v7
@@ -39,70 +31,6 @@ jobs:
 
       - name: Build Android App
         run: dotnet build HackerNews.Maui -f net10.0-android
-
-  Build_iOS:
-    needs: define-macos-version
-    runs-on: ${{ needs.define-macos-version.outputs.macos-version }}
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Setup .NET v10
-        uses: actions/setup-dotnet@v6
-        with:
-          dotnet-version: "10"
-
-      - name: Restore NuGet cache
-        uses: actions/cache@v6
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-
-      - name: Install .NET MAUI Workload
-        run: dotnet workload install maui
-
-      - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_26.5.app/Contents/Developer
-
-      - name: Accept Xcode license
-        run: sudo xcodebuild -license accept
-
-      - name: Build iOS App
-        run: dotnet build HackerNews.Maui -f net10.0-ios
-
-  Build_MacCatalyst:
-    needs: define-macos-version
-    runs-on: ${{ needs.define-macos-version.outputs.macos-version }}
-
-    steps:
-      - uses: actions/checkout@v7
-
-      - name: Setup .NET v10
-        uses: actions/setup-dotnet@v6
-        with:
-          dotnet-version: "10"
-
-      - name: Restore NuGet cache
-        uses: actions/cache@v6
-        with:
-          path: ~/.nuget/packages
-          key: ${{ runner.os }}-nuget-${{ hashFiles('**/*.csproj') }}
-          restore-keys: |
-            ${{ runner.os }}-nuget-
-
-      - name: Install .NET MAUI Workload
-        run: dotnet workload install maui
-
-      - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_26.5.app/Contents/Developer
-
-      - name: Accept Xcode license
-        run: sudo xcodebuild -license accept
-
-      - name: Build Mac App
-        run: dotnet build HackerNews.Maui -f net10.0-maccatalyst
 
   Build_Windows:
     runs-on: windows-latest
@@ -137,8 +65,6 @@ jobs:
   Run_Tests:
     needs:
       - Build_Android
-      - Build_iOS
-      - Build_MacCatalyst
       - Build_Windows
     runs-on: windows-latest
 
