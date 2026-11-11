@@ -16,7 +16,7 @@ jobs:
       - name: Setup .NET v10
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: "10"
+          dotnet-version: "11"
 
       - name: Restore NuGet cache
         uses: actions/cache@v6
@@ -46,7 +46,7 @@ jobs:
       - name: Setup .NET v10
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: "10"
+          dotnet-version: "11"
 
       - name: Restore NuGet cache
         uses: actions/cache@v6
@@ -74,7 +74,7 @@ jobs:
       - name: Setup .NET v10
         uses: actions/setup-dotnet@v6
         with:
-          dotnet-version: "10"
+          dotnet-version: "11"
 
       - name: Restore NuGet cache
         uses: actions/cache@v6
